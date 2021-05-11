@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin new cars</title>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <a href="/home" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row text-center">
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/home" style="font-size: 25px; color: orangered;">Главная страница</a>
+            </div>
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/newcars" style="font-size: 25px; color: orangered;">Новые авто</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+            </div>
+            <div class="col-xs-3" style="border-left: 2px solid black;">
+                <a href="/account" style="font-size: 25px; color: orangered;">Личный кабинет</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:if="${type} == 'admin'">
+        <div class="row text-center">
+            <div class="col-xs-6 col-xs-offset-3" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black; text-decoration: underline;">
+                <a href="/admin" style="font-size: 25px; color: orangered;">Окно администратора</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border: 2px solid black; margin-top: 0.5%;">
+        <div class="row text-center">
+            <div class="col-xs-4" style="margin-bottom: 0.5%;">
+                <h4 style="text-decoration: underline;">Добавление нового автомобиля</h4>
+                <form method="post" action="/newcars/admin_list_new_cars">
+                    <input type="text" name="brand" placeholder="Бренд"><br>
+                    <input type="text" name="model" placeholder="Модель"><br>
+                    <input type="text" name="release_year" placeholder="Год выпуска"><br>
+                    <input type="text" name="body" placeholder="Кузов"><br>
+                    <input type="text" name="color" placeholder="Цвет"><br>
+                    <input type="text" name="engine" placeholder="Двигатель"><br>
+                    <input type="text" name="drive" placeholder="Коробка"><br>
+                    <input type="text" name="wheel" placeholder="Руль"><br>
+                    <input type="text" name="price" placeholder="Цена"><br>
+                    <input type="text" name="picture" placeholder="Картинка"><br>
+                    <input type="hidden" name="action" th:value="create"><br>
+                    <button type="submit">Добавить</button>
+                </form>
+                <p th:text="${create_error}"></p>
+            </div>
+            <div class="col-xs-4" style="margin-bottom: 0.5%; border-left: 2px solid black; border-right: 2px solid black;">
+                <h4 style="text-decoration: underline;">Изменение нового автомобиля</h4>
+                <form method="post" action="/newcars/admin_list_new_cars">
+                    <input type="number" name="id" placeholder="ID авто" value="0"><br>
+                    <input type="text" name="brand" placeholder="Бренд"><br>
+                    <input type="text" name="model" placeholder="Модель"><br>
+                    <input type="text" name="release_year" placeholder="Год выпуска"><br>
+                    <input type="text" name="body" placeholder="Кузов"><br>
+                    <input type="text" name="color" placeholder="Цвет"><br>
+                    <input type="text" name="engine" placeholder="Двигатель"><br>
+                    <input type="text" name="drive" placeholder="Коробка"><br>
+                    <input type="text" name="wheel" placeholder="Руль"><br>
+                    <input type="text" name="price" placeholder="Цена"><br>
+                    <input type="text" name="picture" placeholder="Картинка"><br>
+                    <input type="hidden" name="action" th:value="edit"><br>
+                    <button type="submit">Изменить</button>
+                </form>
+                <p th:text="${edit_error}"></p>
+            </div>
+            <div class="col-xs-4">
+                <h4 style="text-decoration: underline;">Удаление автомобиля</h4>
+                <form method="post" action="/newcars/admin_list_new_cars">
+                    <input type="number" name="id" placeholder="ID авто" value="0"><br>
+                    <input type="hidden" name="action" th:value="delete"><br>
+                    <button type="submit">Удалить</button>
+                </form>
+                <p th:text="${delete_error}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-center" style="text-decoration: underline;">
+                    Таблица новых автомобилей
+                </h4>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Бренд</th>
+                        <th>Модель</th>
+                        <th>Год</th>
+                        <th>Кузов</th>
+                        <th>Цвет</th>
+                        <th>Двигатель</th>
+                        <th>Коробка</th>
+                        <th>Руль</th>
+                        <th>Цена</th>
+                        <th>ID заказа</th>
+                        <th>Картинка</th>
+                    </tr>
+                    <th:block th:each="new_car: ${new_cars}">
+                        <tr>
+                            <td th:text="${new_car.getId()}"></td>
+                            <td th:text="${new_car.getBrand()}"></td>
+                            <td th:text="${new_car.getModel()}"></td>
+                            <td th:text="${new_car.getRelease_year()}"></td>
+                            <td th:text="${new_car.getBody()}"></td>
+                            <td th:text="${new_car.getColor()}"></td>
+                            <td th:text="${new_car.getEngine()}"></td>
+                            <td th:text="${new_car.getDrive()}"></td>
+                            <td th:text="${new_car.getWheel()}"></td>
+                            <td th:text="${new_car.getPrice()}"></td>
+                            <td th:text="${new_car.getOrder_new_car_id()}"></td>
+                            <td style="word-break: break-word;" th:text="${new_car.getPicture()}"></td>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>

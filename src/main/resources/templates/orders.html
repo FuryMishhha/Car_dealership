@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin orders</title>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <a href="/home" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row text-center">
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/home" style="font-size: 25px; color: orangered;">Главная страница</a>
+            </div>
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/newcars" style="font-size: 25px; color: orangered;">Новые авто</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+            </div>
+            <div class="col-xs-3" style="border-left: 2px solid black;">
+                <a href="/account" style="font-size: 25px; color: orangered;">Личный кабинет</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:if="${type} == 'admin'">
+        <div class="row text-center">
+            <div class="col-xs-6 col-xs-offset-3" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black; text-decoration: underline;">
+                <a href="/admin" style="font-size: 25px; color: orangered;">Окно администратора</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border: 2px solid black; margin-top: 0.5%;">
+        <div class="row text-center">
+            <div class="col-xs-3" style="margin-bottom: 0.5%; border-right: 2px solid black;">
+                <h4 style="text-decoration: underline;">Изменение статуса заказа нового авто</h4>
+                <form method="post" action="/orders">
+                    <input type="number" name="id" placeholder="ID заказа" value="0"/><br>
+                    <input type="hidden" name="action" value="edit_new_order"/><br>
+                    <button type="submit">Изменить</button>
+                    <p th:text="${edit_new_order_error}"></p>
+                    <div class="col-xs-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="gridRadios1" value="Резерв" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Резерв
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="gridRadios2" value="Оплачено">
+                            <label class="form-check-label" for="gridRadios2">
+                                Оплачено
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-3" style="margin-bottom: 0.5%;">
+                <h4 style="text-decoration: underline;" >Удаление заказа нового авто</h4>
+                <form method="post" action="/orders">
+                    <input style="margin-top: 7.5%;" type="number" name="id" placeholder="ID авто" value="0"><br>
+                    <input type="hidden" name="action" th:value="delete_new_order"><br>
+                    <button type="submit">Удалить</button>
+                </form>
+                <p th:text="${delete_new_order_error}"></p>
+            </div>
+            <div class="col-xs-3" style="margin-bottom: 0.5%; border-right: 2px solid black; border-left: 2px solid black;">
+                <h4 style="text-decoration: underline;">Изменение статуса заказа поддержанного авто</h4>
+                <form method="post" action="/orders">
+                    <input type="number" name="id" placeholder="ID заказа" value="0"/><br>
+                    <input type="hidden" name="action" value="edit_support_order"/><br>
+                    <button type="submit">Изменить</button>
+                    <p th:text="${edit_support_order_error}"></p>
+                    <div class="col-xs-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="gridRadios3" value="Резерв" checked>
+                            <label class="form-check-label" for="gridRadios3">
+                                Резерв
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="gridRadios4" value="Оплачено">
+                            <label class="form-check-label" for="gridRadios4">
+                                Оплачено
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-3" style="margin-bottom: 0.5%;">
+                <h4 style="text-decoration: underline;">Удаление заказа поддержанного авто</h4>
+                <form method="post" action="/orders">
+                    <input type="number" name="id" placeholder="ID авто" value="0"><br>
+                    <input type="hidden" name="action" th:value="delete_support_order"><br>
+                    <button type="submit">Удалить</button>
+                </form>
+                <p th:text="${delete_support_order_error}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4 class="text-center" style="text-decoration: underline;">
+                    Таблица заказов новых авто
+                </h4>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>ID пользователя</th>
+                        <th>Автомобиль</th>
+                        <th>Статус</th>
+                    </tr>
+                    <th:block th:each="new_order: ${new_orders}">
+                        <tr>
+                            <td th:text="${new_order.getId()}"></td>
+                            <td th:text="${new_order.getUser1().getId()}"></td>
+                            <td th:text="${newCarService.findNewCar(new_order.getNew_car_id()).getBrand()} + ' ' + ${newCarService.findNewCar(new_order.getNew_car_id()).getModel()}"></td>
+                            <td th:text="${new_order.getStatus()}"></td>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+            <div class="col-xs-6">
+                <h4 class="text-center" style="text-decoration: underline;">
+                    Таблица заказов поддежанных авто
+                </h4>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>ID пользователя</th>
+                        <th>Автомобиль</th>
+                        <th>Статус</th>
+                    </tr>
+                    <th:block th:each="support_order: ${support_orders}">
+                        <tr>
+                            <td th:text="${support_order.getId()}"></td>
+                            <td th:text="${support_order.getUser2().getId()}"></td>
+                            <td th:text="${supportCarService.findSupportCar(support_order.getSupport_car_id()).getBrand()} + ' ' + ${supportCarService.findSupportCar(support_order.getSupport_car_id()).getModel()}"></td>
+                            <td th:text="${support_order.getStatus()}"></td>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>

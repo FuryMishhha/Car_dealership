@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Log in with your account</title>
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <a href="#" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <form method="POST" action="/login">
+                    <h3 style="text-decoration: underline;">Вход в систему</h3>
+                    <div>
+                        <label>
+                            <input class="form-control" name="username" type="text" placeholder="Логин" autofocus="true"/>
+                        </label>
+                        <label>
+                            <input class="form-control" name="password" type="password" placeholder="Пароль"/>
+                        </label>
+                        <button type="submit">Авторизоваться</button>
+                        <h4><a href="/sign">Зарегистрироваться</a></h4>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>

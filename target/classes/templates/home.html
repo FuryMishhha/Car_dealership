@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+    <body>
+    <div class="section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <a href="/home" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="border-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+            <div class="row text-center">
+                <div class="col-xs-3" style="border-right: 2px solid black;">
+                    <a href="/home" style="font-size: 25px; color: orangered; text-decoration: underline;">Главная страница</a>
+                </div>
+                <div class="col-xs-3" style="border-right: 2px solid black;">
+                    <a href="/newcars" style="font-size: 25px; color: orangered;">Новые авто</a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+                </div>
+                <div class="col-xs-3" style="border-left: 2px solid black;">
+                    <a href="/account" style="font-size: 25px; color: orangered;">Личный кабинет</a>
+                </div>
+            </div>
+        </div>
+        <div class="container" th:if="${type} == 'admin'">
+            <div class="row text-center">
+                <div class="col-xs-6 col-xs-offset-3" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+                    <a href="/admin" style="font-size: 25px; color: orangered;">Окно администратора</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</html>

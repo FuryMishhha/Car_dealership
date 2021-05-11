@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Пользователи</title>
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <a href="/home" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row text-center">
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/home" style="font-size: 25px; color: orangered;">Главная страница</a>
+            </div>
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/newcars" style="font-size: 25px; color: orangered;">Новые авто</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+            </div>
+            <div class="col-xs-3" style="border-left: 2px solid black;">
+                <a href="/account" style="font-size: 25px; color: orangered;">Личный кабинет</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:if="${type} == 'admin'">
+        <div class="row text-center">
+            <div class="col-xs-6 col-xs-offset-3" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black; text-decoration: underline;">
+                <a href="/admin" style="font-size: 25px; color: orangered;">Окно администратора</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 0.5%; border-top-left-radius: 10px; border-top-right-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row text-center">
+            <div class="col-xs-4">
+                <h4 style="text-decoration: underline;">Создание пользователя</h4>
+                <h4><a href="sign">Создать пользователя</a></h4>
+            </div>
+            <div class="col-xs-4" style="border-left: 2px solid black; border-right: 2px solid black;">
+                <h4 style="text-decoration: underline;">Изменение типа пользователя</h4>
+                <form method="post" action="/users">
+                    <input type="text" name="name" placeholder="Имя пользователя"/>
+                    <button type="submit">Изменить</button>
+                    <p th:text="${edit_error}"></p>
+                    <div class="col-xs-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="gridRadios1" value="user" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                User
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="gridRadios2" value="admin">
+                            <label class="form-check-label" for="gridRadios2">
+                                Admin
+                            </label>
+                        </div>
+                    </div>
+                    <label>
+                        <input type="hidden" name="action" value="change_type"/>
+                    </label>
+                </form>
+            </div>
+            <div class="col-xs-4">
+                <h4 style="text-decoration: underline;">Удаление пользователя</h4>
+                <form method="post" action="/users">
+                    <input type="text" name="name" placeholder="Имя пользователя"/>
+                    <input type="hidden" name="action" value="delete_user"/>
+                    <button type="submit">Удалить</button>
+                    <p th:text="${delete_error}"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-center" style="text-decoration: underline;">Данные пользователей</h4>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Ник</th>
+                        <th>Почта</th>
+                        <th>Cтатус</th>
+                    </tr>
+                    <th:block th:each="user: ${users}">
+                        <tr>
+                            <td th:text="${user.getId()}"></td>
+                            <td th:text="${user.getName()}"></td>
+                            <td th:text="${user.getEmail()}"></td>
+                            <td th:text="${user.getType()}"></td>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>

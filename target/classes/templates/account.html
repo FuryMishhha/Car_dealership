@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Account</title>
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <a href="/home" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row text-center">
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/home" style="font-size: 25px; color: orangered;">Главная страница</a>
+            </div>
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/newcars" style="font-size: 25px; color: orangered;">Новые авто</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+            </div>
+            <div class="col-xs-3" style="border-left: 2px solid black;">
+                <a href="/account" style="font-size: 25px; color: orangered; text-decoration: underline;">Личный кабинет</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:if="${type} == 'admin'">
+        <div class="row text-center">
+            <div class="col-xs-6 col-xs-offset-3" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+                <a href="/admin" style="font-size: 25px; color: orangered;">Окно администратора</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 1.5%;">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4 class="text-center" style="text-decoration: underline;">Данные аккаунта</h4>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Ник</th>
+                        <th>Почта</th>
+                        <th>Cтатус</th>
+                    </tr>
+                    <td th:text="${id}"></td>
+                    <td th:text="${username}"></td>
+                    <td th:text="${email}"></td>
+                    <td th:text="${type}"></td>
+                </table>
+                <h4 style="text-decoration: underline;" class="text-center">Сменить почту</h4>
+                <form method="post" action="/account" class="text-center">
+                    <input type="email" name="email" placeholder="Ваша новая почта"/>
+                    <input type="hidden" name="action" value="change_email"/>
+                    <button type="submit">Изменить</button>
+                    <p th:text="${edit_error}"></p>
+                </form>
+                <div style="margin-top: 1.5%;">
+                    <td>
+                        <form action="/logout" method="post" class="text-center">
+                            <button type="submit" style="color: red">Выйти из аккаунта</button>
+                        </form>
+                    </td>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h4 class="text-center" style="text-decoration: underline;">Ваши активные заказы</h4>
+                <table class="table">
+                    <tr>
+                        <th>Автомобиль</th>
+                        <th>Статус заказа</th>
+                    </tr>
+                    <th:block th:if="${id} == ${new_order.getUser1().getId()}" th:each="new_order: ${new_orders}">
+                        <tr>
+                            <td th:text="${newCarService.findNewCar(new_order.getNew_car_id()).getBrand()} + ' ' + ${newCarService.findNewCar(new_order.getNew_car_id()).getModel()}"></td>
+                            <td th:text="${new_order.getStatus()}"></td>
+                        </tr>
+                    </th:block>
+                    <th:block1 th:if="${id} == ${support_order.getUser2().getId()}" th:each="support_order: ${support_orders}">
+                        <tr>
+                            <td th:text="${supportCarService.findSupportCar(support_order.getSupport_car_id()).getBrand()} + ' ' + ${supportCarService.findSupportCar(support_order.getSupport_car_id()).getModel()}"></td>
+                            <td th:text="${support_order.getStatus()}"></td>
+                        </tr>
+                    </th:block1>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>

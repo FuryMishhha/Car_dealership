@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-6">
+                <a href="#" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+            <div class="col-xs-6" style="margin-top: 2%;">
+                <a href="/login" style="font-size: 27px;">Войти в аккаунт</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <h3 style="text-decoration: underline;">Регистрация</h3>
+            </div>
+            <div class="col-xs-12">
+                <form name="signUpUser" method="post" action="/sign">
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <input class="form-control" id="usernameInput" name="username" type="text"
+                               required placeholder="Введите ваше имя">
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <input class="form-control"
+                               id="mailInput"
+                               name="email" type="email"
+                               required placeholder="Введите вашу почту">
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <input class="form-control"
+                               id="passwordInput"
+                               name="password" type="password"
+                               required placeholder="Введите ваш пароль">
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <input class="form-control"
+                               id="matchingPasswordInput"
+                               name="password2" type="password"
+                               required placeholder="Введите ваш пароль повторно">
+                    </div>
+                    <label>
+                        <input type="hidden" name="type" value="user"/>
+                    </label>
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <button type="submit" style="margin-top: 0.5%; color: green;">Зарегистрироваться</button>
+                        <div th:if="${Status} == 'user_exists'">Пользователь с таким именем уже существует</div>
+                        <div th:if="${Status} == 'pass1!=pass2'">Неправильный пароль подтверждения</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>

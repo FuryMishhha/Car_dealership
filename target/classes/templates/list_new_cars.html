@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New cars</title>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <a href="/home" id="plate" style="font-size: 27px;">Автосалон Credo</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-radius: 10px; border-top: 2px solid black; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+        <div class="row text-center">
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/home" style="font-size: 25px; color: orangered;">Главная страница</a>
+            </div>
+            <div class="col-xs-3" style="border-right: 2px solid black;">
+                <a href="/newcars" style="font-size: 25px; color: orangered; text-decoration: underline;">Новые авто</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+            </div>
+            <div class="col-xs-3" style="border-left: 2px solid black;">
+                <a href="/account" style="font-size: 25px; color: orangered;">Личный кабинет</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:if="${type} == 'admin'">
+        <div class="row text-center">
+            <div class="col-xs-6 col-xs-offset-3" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-bottom: 2px solid black; border-left: 2px solid black; border-right: 2px solid black;">
+                <a href="/admin" style="font-size: 25px; color: orangered;">Окно администратора</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-radius: 10px; margin-top: 0.5%; border: 2px solid black;">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-center" style="text-decoration: underline;">
+                    Новые автомобили
+                </h4>
+                <div class="col-xs-12" style="margin-bottom: 0.5%;">
+                    <form method="post">
+                        <input type="text" name="brand" placeholder="Бренд">
+                        <input type="text" name="model1" placeholder="Модель">
+                        <input type="text" name="body" placeholder="Кузов">
+                        <input type="hidden" name="action" th:value="search">
+                        <button type="submit">Поиск</button>
+                        <button type="submit" name="action" th:value="reset">Сбросить</button>
+                        <p th:text="${no_car_error}"></p>
+                    </form>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>Бренд</th>
+                        <th>Модель</th>
+                        <th>Кузов</th>
+                        <th>Цена</th>
+                        <th>Детали</th>
+                    </tr>
+                    <th:block th:if="${new_car.getOrder_new_car_id()} == null " th:each="new_car: ${new_cars}">
+                        <tr>
+                            <td th:text="${new_car.getBrand()}"></td>
+                            <td th:text="${new_car.getModel()}"></td>
+                            <td th:text="${new_car.getBody()}"></td>
+                            <td th:text="${new_car.getPrice()}"></td>
+                            <td>
+                                <form method="post">
+                                    <input type="hidden" name="id" th:value="${new_car.getId()}"/>
+                                    <input type="hidden" name="action" th:value="details"/>
+                                    <button type="submit">Подробнее</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 60px;">&#160;</div>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted" style="margin-top: 1.5%;">© 2021 Автосалон Credo. All Rights Reserved | Designed by Panchenkov Misha</p>
+    </div>
+</footer>
+</body>
+</html>
