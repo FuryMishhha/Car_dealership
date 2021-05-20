@@ -109,7 +109,7 @@ public class NewCarController {
     }
 
     @GetMapping("{id}")
-    public String OneCarDescription(@PathVariable Integer id, Model model, Authentication authentication){
+    public String oneCarDescription(@PathVariable Integer id, Model model, Authentication authentication){
         model.addAttribute("type", userService.findByName(authentication.getName()).getType());
         New_car new_car = newCarService.findNewCar(id);
         if (new_car != null) {
@@ -136,7 +136,7 @@ public class NewCarController {
 
     @SneakyThrows
     @PostMapping("{id}")
-    public String NewOrder(@PathVariable Integer id, Model model, Authentication authentication){
+    public String newOrder(@PathVariable Integer id, Model model, Authentication authentication){
         model.addAttribute("type", userService.findByName(authentication.getName()).getType());
         New_car new_car = newCarService.findNewCar(id);
         if (new_car!=null){

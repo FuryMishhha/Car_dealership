@@ -74,7 +74,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/users")
-    public String Usersinfo(Authentication authentication, Model model){
+    public String usersInfo(Authentication authentication, Model model){
         model.addAttribute("type", userService.findByName(authentication.getName()).getType());
         if (userService.findByName(authentication.getName()).getType().equals("admin")) {
             model.addAttribute("users", userService.readAll());
@@ -120,7 +120,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/sign", method = RequestMethod.POST)
-    public String SignUp(@RequestParam String username, String password, String password2, String email, String type,
+    public String signUp(@RequestParam String username, String password, String password2, String email, String type,
                          Model model) {
         if (!password.equals(password2)) {
             model.addAttribute("Status", "pass1!=pass2");

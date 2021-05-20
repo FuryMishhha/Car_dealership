@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NewCarRepository extends JpaRepository <New_car, Integer> {
     Long deleteNew_carById(Integer id);
+    New_car findNew_carById(Integer id);
 }

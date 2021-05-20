@@ -25,10 +25,6 @@ public class OrderController {
     @Autowired
     SupportCarService supportCarService;
     @Autowired
-    CriteriaService criteriaService;
-    @Autowired
-    EmailService emailService;
-    @Autowired
     OrderService orderService;
 
     @RequestMapping(path = "/orders")

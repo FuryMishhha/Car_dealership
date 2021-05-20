@@ -145,7 +145,7 @@ public class SupportCarController {
     }
 
     @GetMapping("{id}")
-    public String OneCarDescription(@PathVariable Integer id, Model model, Authentication authentication){
+    public String oneCarDescription(@PathVariable Integer id, Model model, Authentication authentication){
         model.addAttribute("type", userService.findByName(authentication.getName()).getType());
         Support_car support_car = supportCarService.findSupportCar(id);
         if (support_car!=null){
@@ -175,7 +175,7 @@ public class SupportCarController {
 
     @SneakyThrows
     @PostMapping("{id}")
-    public String SupportOrder(@PathVariable Integer id, Model model, Authentication authentication){
+    public String supportOrder(@PathVariable Integer id, Model model, Authentication authentication){
         model.addAttribute("type", userService.findByName(authentication.getName()).getType());
         Support_car support_car = supportCarService.findSupportCar(id);
         if (support_car!=null){

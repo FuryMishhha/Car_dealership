@@ -19,9 +19,6 @@ public class SupportCarService {
     @Autowired
     private SupportCarRepository supportCarRepository;
 
-    @Autowired
-    private EmailService emailService;
-
     public SupportCarService(SupportCarRepository supportCarRepository) {
         this.supportCarRepository = supportCarRepository;
     }

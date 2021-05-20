@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NewOrderRepository extends JpaRepository <OrderNewCar, Integer> {
     Long deleteOrderById(Integer id);
+    OrderNewCar findOrderNewCarById(Integer id);
 }

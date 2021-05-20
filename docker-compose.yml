@@ -1,0 +1,25 @@
+version: '3.8'
+volumes:
+   pg-data:
+
+services:
+  postgres:
+    image: postgres:12.7-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=car_dealership
+      - POSTGRES_PASSWORD=lolkekasas
+  
+  app:
+    build:
+      context: services/app
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8091
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/car_dealership
+      - JS_URL=http://localhost
+    image: 'my-java-application'
+    ports:
+      - 8091:8080
+    depends_on:
+      - postgres
