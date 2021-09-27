@@ -9,11 +9,21 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
-
+/**
+ * Класс EmailService, который отвечает за бизнес-логику работы с почтой.
+ */
 @Service
 @Transactional
 public class EmailService {
 
+    /**
+     * Метод отправки сообщениия на почту
+     * @param message сообщение
+     * @param email почта пользователя
+     * @throws AddressException
+     * @throws MessagingException
+     * @throws IOException
+     */
     @Async
     public void sendmail(String message, String email) throws AddressException, MessagingException, IOException {
         Properties props = new Properties();

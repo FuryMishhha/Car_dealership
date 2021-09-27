@@ -24,7 +24,7 @@
                 <a href="/newcars" style="font-size: 25px; color: orangered;">Новые авто</a>
             </div>
             <div class="col-xs-3">
-                <a href="/supportcars" style="font-size: 25px; color: orangered;">Поддержанные авто</a>
+                <a href="/supportcars" style="font-size: 25px; color: orangered;">Подержанные авто</a>
             </div>
             <div class="col-xs-3" style="border-left: 2px solid black;">
                 <a href="/account" style="font-size: 25px; color: orangered;">Личный кабинет</a>
@@ -73,7 +73,7 @@
                 <p th:text="${delete_new_order_error}"></p>
             </div>
             <div class="col-xs-3" style="margin-bottom: 0.5%; border-right: 2px solid black; border-left: 2px solid black;">
-                <h4 style="text-decoration: underline;">Изменение статуса заказа поддержанного авто</h4>
+                <h4 style="text-decoration: underline;">Изменение статуса заказа подержанного авто</h4>
                 <form method="post" action="/orders">
                     <input type="number" name="id" placeholder="ID заказа" value="0"/><br>
                     <input type="hidden" name="action" value="edit_support_order"/><br>
@@ -96,7 +96,7 @@
                 </form>
             </div>
             <div class="col-xs-3" style="margin-bottom: 0.5%;">
-                <h4 style="text-decoration: underline;">Удаление заказа поддержанного авто</h4>
+                <h4 style="text-decoration: underline;">Удаление заказа подержанного авто</h4>
                 <form method="post" action="/orders">
                     <input type="number" name="id" placeholder="ID заказа" value="0"><br>
                     <input type="hidden" name="action" th:value="delete_support_order"><br>
@@ -131,7 +131,7 @@
             </div>
             <div class="col-xs-6">
                 <h4 class="text-center" style="text-decoration: underline;">
-                    Таблица заказов поддежанных авто
+                    Таблица заказов подержанных авто
                 </h4>
                 <table class="table">
                     <tr>
